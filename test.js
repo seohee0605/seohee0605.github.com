@@ -4,7 +4,7 @@
     const cookies = document.cookie;
 
     fetch(Url, {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
