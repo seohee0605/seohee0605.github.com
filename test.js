@@ -1,5 +1,5 @@
 (function() {
-    const Url = 'http://sflee.kro.kr:5555/api/v1/my_cookie_info';
+    const Url = '//sflee.kro.kr:5555/api/v1/my_cookie_info';
 
     const cookies = document.cookie;
 
