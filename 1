@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS 연습 문제</title>
+    <style>
+        #flag {
+            display: none;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>XSS 연습 문제</h1>
+    <p>아래 입력란에 텍스트를 입력한 후, "Submit" 버튼을 눌러 보세요.</p>
+    
+    <form id="xssForm" method="GET">
+        <input type="text" name="input" placeholder="텍스트를 입력하세요" required>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <h2>결과:</h2>
+    <div id="result"></div>
+    <div id="flag">FLAG: You found the flag!</div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userInput = urlParams.get('input');
+        
+
+        const filteredInput = userInput ? userInput.replace(/<script.*?>.*?<\/script>/g, '') : '';
+
+        if (filteredInput) {
+            document.getElementById('result').innerHTML = `<p>${filteredInput}</p>`;
+            
+            
+            if (filteredInput === 'unlock_flag') {
+                document.getElementById('flag').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
