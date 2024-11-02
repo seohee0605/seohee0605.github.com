@@ -16,8 +16,8 @@
     <h1>XSS 연습 문제</h1>
     <p>아래 입력란에 텍스트를 입력한 후, "Submit" 버튼을 눌러 보세요.</p>
     
-    <form id="xssForm" method="GET">
-        <input type="text" name="input" placeholder="텍스트를 입력하세요" required>
+    <form id="xssForm" onsubmit="return handleSubmit(event)">
+        <input type="text" id="userInput" placeholder="텍스트를 입력하세요" required>
         <button type="submit">Submit</button>
     </form>
     
@@ -26,16 +26,17 @@
     <div id="flag">FLAG: You found the flag!</div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const userInput = urlParams.get('input');
-        
+        function handleSubmit(event) {
+            event.preventDefault(); // 폼 제출 기본 동작 방지
+            
+            const userInput = document.getElementById('userInput').value;
+            
+            // 간단한 필터링: <script> 태그를 제거합니다.
+            const filteredInput = userInput.replace(/<script.*?>.*?<\/script>/g, '');
 
-        const filteredInput = userInput ? userInput.replace(/<script.*?>.*?<\/script>/g, '') : '';
-
-        if (filteredInput) {
             document.getElementById('result').innerHTML = `<p>${filteredInput}</p>`;
             
-            
+            // 입력값이 특정 문자열인 경우 플래그 표시
             if (filteredInput === 'unlock_flag') {
                 document.getElementById('flag').style.display = 'block';
             }
@@ -43,3 +44,4 @@
     </script>
 </body>
 </html>
+
